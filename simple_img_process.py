@@ -17,15 +17,12 @@ def generateImg(data_n=100):
     x_ls = []
     y_ls = []
     for i in range(data_n):
-        if i%2 == 0:
-            img = np.zeros((h,w,c),dtype="uint8")
-            y_ls.append(0)
-        else:
-            img = np.ones((h,w,c),dtype="uint8")*255
-            center = (40,30)
-            color = (230,160,160)
-            img = addNote(img,center=center,radius=7,color=color)
-            y_ls.append(1)
+        img = np.ones((h,w,c),dtype="uint8")*255
+        for j in range(5):
+            center = (10+15*j,50)
+            img = addNote(img,center=center,radius=6,color=(200,200,200))
+        img = addNote(img,center=(40,2*i),radius=6,color=(230,160,160))
+        y_ls.append(1)
         x_ls.append(img)
     x_ls = na(x_ls)
     y_ls = na(y_ls)
@@ -36,8 +33,8 @@ def showSamples(x_ls,y_ls):
     import matplotlib.pyplot as plt
     for i in range(16):
         plt.subplot(4,4,i+1)
-        plt.imshow(x_ls[i])
-        plt.title(y_ls[i])
+        plt.imshow(x_ls[i+40])
+        plt.title(y_ls[i+40])
     plt.show()    
 
 
