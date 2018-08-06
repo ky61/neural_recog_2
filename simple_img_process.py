@@ -2,7 +2,7 @@ import sys
 import cv2
 import numpy as np
 
-# ノーツを加える
+# ノーツを加える [simple_img_process.py]
 def addNote(src_img,center,radius,color=None):
     if color is None: color = (70,70,70)
     tar_img = cv2.circle(src_img,center=center,radius=radius,color=color,thickness=-1)
@@ -13,16 +13,20 @@ def generateImg(data_n=100):
     w = 80
     h = 60
     c = 3
+    bg_color = (180,220,220)
     na = np.array
     x_ls = []
     y_ls = []
     for i in range(data_n):
-        img = np.ones((h,w,c),dtype="uint8")*255
+        img = np.ones((h,w,c),dtype="uint8")
+        img[:,:,0] = bg_color[0]
+        img[:,:,1] = bg_color[1]
+        img[:,:,2] = bg_color[2]
         for j in range(5):
             center = (10+15*j,50)
             img = addNote(img,center=center,radius=6,color=(200,200,200))
         img = addNote(img,center=(40,2*i),radius=6,color=(230,160,160))
-        y_ls.append(1)
+        y_ls.append([0,0,1,0,0])
         x_ls.append(img)
     x_ls = na(x_ls)
     y_ls = na(y_ls)
@@ -33,8 +37,8 @@ def showSamples(x_ls,y_ls):
     import matplotlib.pyplot as plt
     for i in range(16):
         plt.subplot(4,4,i+1)
-        plt.imshow(x_ls[i+40])
-        plt.title(y_ls[i+40])
+        plt.imshow(x_ls[i+10])
+        plt.title(y_ls[i+10][2])
     plt.show()    
 
 
