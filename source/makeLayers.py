@@ -27,7 +27,6 @@ def makeLayers(input_shape, num_classes):
 	model.add(Dropout(0.25)) # Dropout: 入力にドロップアウトを適用する．ドロップアウトは，訓練時のそれぞれの更新において入力ユニットのrateをランダムに0にセットすることであり，それは過学習を防ぐのを助ける．
 	model.add(Dense(32, activation=activator)) # Dense： 普通の全結合のニューラルネットワーク
 	model.add(Dense(16, activation=activator)) # Dense： 普通の全結合のニューラルネットワーク
-	model.add(Dense(3, activation=activator)) # Dense： 普通の全結合のニューラルネットワーク
 	model.add(Dense(num_classes, activation='softmax')) # Dense： 普通の全結合のニューラルネットワーク
 
 	model.compile(loss=keras.losses.categorical_crossentropy,

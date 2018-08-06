@@ -1,0 +1,4 @@
+■正例と負例の数を合わせる
+■tensorboardを使ってみる
+■conv3dを使って時系列データを
+■domain randomization
